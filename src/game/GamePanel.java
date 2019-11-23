@@ -8,7 +8,6 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
-import game.states.GameState;
 import game.states.GameStateManager;
 import game.util.KeyHandler;
 import game.util.MouseHandler;
@@ -17,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 	public static int width;
 	public static int height;
+	public static int oldFrameCount;
 
 	private Thread thread;
 	private boolean running = false;
@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
 		final double TTBR = 1000000000 / TARGET_FPS; // Total time before render
 		int frameCount = 0;
 		int lastSecondTime = (int) (lastUpdateTime / 1000000000);
-		int oldFrameCount = 0;
+		 oldFrameCount = 0;
 
 		while (running) {
 			double now = System.nanoTime();
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements Runnable {
 			int thisSecond = (int) (lastUpdateTime / 1000000000);
 			if (thisSecond > lastSecondTime) {
 				if (frameCount != oldFrameCount) {
-					System.out.println("New second " + thisSecond + " " + frameCount);
+//					System.out.println("New second " + thisSecond + " " + frameCount);
 					oldFrameCount = frameCount;
 				}
 				frameCount = 0;
